@@ -1,0 +1,37 @@
+
+.container{
+    position: absolute;
+    color: white;
+    top: 25%;
+    left: 30%;
+    width: 40vw;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+    background-size: cover;
+    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.8)),url("../img/background.png");
+}
+
+span{
+    font-size: 5em;
+}
+
+.stopwatch{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.stopwatch img{
+    width: 4rem;
+    height: 4rem;
+    
+}
+
+.stopwatch img:active{
+    filter: invert(1);
+}

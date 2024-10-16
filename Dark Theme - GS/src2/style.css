@@ -1,0 +1,14 @@
+:root{
+    --primary-color:white;
+    --secondary-color:black;
+}
+
+.toggle{
+    --primary-color:black;
+    --secondary-color:white;
+}
+
+body{
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}

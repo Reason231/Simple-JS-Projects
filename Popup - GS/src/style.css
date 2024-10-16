@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    /* visibility: hidden; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+    gap: 20px;
+    background-color: white;
+    transform: translateY(-510px);
+    transition: all 0.3s ease-out;
+}
+
+.container img{
+    width: 30%;
+    transform: translateY(-35px);
+}
+
+
+body{
+    background-color: blanchedalmond;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+button{
+    border: none;
+    outline: none;
+    background-color: green;
+    width: 14vw;
+    font-size: 1rem;
+    color: white;
+}
+
+

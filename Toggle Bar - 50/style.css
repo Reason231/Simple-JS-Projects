@@ -1,0 +1,19 @@
+
+.togglebar{
+    width: 30vw;
+    height: 98svh;
+    background-color: #131111;
+    color: white;
+    border-radius:10px ;
+    transform: translateX(-100vw);
+    transition: all 0.2s ease-in;
+
+}
+
+.togglebar ul{
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    gap: 15px;
+}

@@ -1,0 +1,95 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  background: rgb(57, 154, 155);
+  background: linear-gradient(
+    0deg,
+    rgba(57, 154, 155, 1) 6%,
+    rgba(91, 152, 211, 1) 10%,
+    rgba(239, 45, 253, 1) 100%
+  );
+  width: 100%;
+  height: 100dvh;
+  overflow-x: hidden;
+}
+
+.main {
+  transform: translate(10vw, 10vh);
+}
+
+.logo h2 {
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+  color: white;
+  font-weight: 700;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.logo img {
+  height: 55px;
+}
+
+.createbtn {
+  width: 23vw;
+  background-color: rgba(134, 3, 194, 0.994);
+  border-radius: 20px;
+  padding: 10px;
+  display: flex;
+  gap: 5px;
+  transform: translateY(20px);
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: white;
+  font-weight: 400;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.createbtn img {
+  height: 20px;
+}
+
+.notes ul {
+  transform: translateY(2em);
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.notes ul li {
+  width: 38vw;
+  min-height: 20vh;
+  list-style-type: none;
+  border-radius: 5px;
+  background-color: white;
+  font-weight: 400;
+  position: relative;
+  padding: 10px;
+}
+
+
+
+.notes ul li textarea {
+  outline: none;
+  border: none;
+  width: 100%;
+  min-height: 20vh;
+  resize: none;
+  overflow-wrap: break-word;
+  overflow: hidden;
+}
+
+.notes ul li img{
+  width: 15px;
+  position: absolute;
+  right:10px;
+  bottom: 10px;
+}

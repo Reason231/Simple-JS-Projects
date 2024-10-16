@@ -1,0 +1,113 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    width: 100%;
+    min-height: 100vh;
+    background:linear-gradient(135deg,#153677,#4e085f);
+    padding: 10px;
+}
+
+.to-do{
+    margin: 50px auto 20px;
+    padding: 40px 30px ;
+    background-color: white;
+    max-width: 40vw;
+    border-radius: 10px;
+}
+
+.to-do h2{
+    color: #002765;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.to-do h2 img{
+    width: 30px;
+}
+
+.row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #edeef0;
+    border-radius: 30px;
+    padding-left: 20px;
+    margin-bottom: 25px;
+}
+
+input{
+    /* It takes the full width of the row div */
+    flex: 1;  
+    background-color: transparent;
+    /* It would be no outline when clicked on the input field */
+    outline:none ;
+    border: none;
+}
+
+button{
+    border: none;
+    outline: none;
+    padding: 16px 50px;
+    background-color: #ff5945;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 40px;
+    font-size: 16px;
+}
+
+
+
+ul li{
+    list-style-type: none;
+    position: relative;
+    padding: 12px 8px 12px 30px;
+    cursor: pointer;
+    user-select: none;
+}
+
+ul li::before{
+    content: "";
+    position: absolute;
+    background-image: url(./images/unchecked.png);
+
+    /* The height and width should be same in order to see circle */
+    height: 18px;
+    width: 18px;
+    position: absolute;
+    background-size: cover;
+    /* margin-right: 55px; */
+    border-radius: 50%;
+    background-position: center;
+    top: 12px;
+    left: 5px;
+}
+
+ul li.checked{
+    text-decoration: line-through;
+}
+
+ul li.checked::before{
+    background-image: url(./images/checked.png);
+}
+
+ul li span{
+    position: absolute;
+    right: 0;
+    top: 5px;
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+    color: #555;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50px;
+}
+
+ul li span:hover{
+    background: #edeef0;
+}
