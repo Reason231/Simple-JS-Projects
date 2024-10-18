@@ -1,0 +1,24 @@
+html{
+    scroll-behavior: smooth;
+}
+.container{
+    display: flex;
+    gap: 25px;
+}
+.container img{
+
+    filter:grayscale(1);
+    transition: transform 0.5s;
+}
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(15vh);
+    gap: 15px;
+}
+
+.container img:hover{
+    transform: scale(1.05);
+    filter: grayscale(0);
+}

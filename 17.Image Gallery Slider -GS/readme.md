@@ -1,0 +1,2 @@
+- The 1.Help of array is done through the help of chatgpt using the array
+- The 2.Help of greatstack is done through the help of greatstack youtuber
