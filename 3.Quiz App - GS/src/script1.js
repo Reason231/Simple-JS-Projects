@@ -91,63 +91,106 @@ const questions = [
     }
 ];
 
-// Approach
-// 1. The first aprroach would be show question and answers
-// 2. The second would be add the counter
-// 3. The third would be next button add event listener
-// 4. The fourth would be button click event listener
-// 5. 
-
-
 const question = document.getElementById("question");
 const answer = document.getElementById("answer-button");
 const next = document.getElementById("next-btn");
 
-let questionCounter = 0;
+let counter = 0;
+let rightAnswer=0
 
 function startQuiz() {
     questionFunction();
     answerFunction();
 }
 
+startQuiz();
+
 function questionFunction() {
-    question.innerHTML = `${questionCounter + 1}. ${questions[questionCounter].question}`;
+    question.innerHTML = `${counter + 1}. ${questions[counter].question}`;
 }
+
 
 function answerFunction() {
     answer.innerHTML = "";
 
-    questions[questionCounter].answers.forEach((answerOption) => {
+    let trueAnswer; // Declare trueAnswer outside the loop but assign it inside
+
+    questions[counter].answers.forEach((answerOption) => {
+
+        // The true answer is assigned to the trueAnswer variable
+        if(answerOption.correct == true){
+            trueAnswer = answerOption.text; // Assign only when the correct answer is found
+        }
+
+        // It puts the answerOption  to the button
         let button = document.createElement("button");
         button.classList.add("btn");
         button.innerHTML = answerOption.text;
-
         answer.appendChild(button);
+        
 
+        // It checks if the selected button is right or wrong
         button.addEventListener("click", () => {
             if (answerOption.correct) {
                 button.classList.add("correct");
+                rightAnswer++
             } else {
                 button.classList.add("incorrect");
-            }
 
+                // It the selected option is wrong, then it will show the right answer
+                let exceptSelected = document.querySelectorAll("button");
+                exceptSelected.forEach((exceptbtn) => {
+                    // It checks other button except than the selected button
+                    if(exceptbtn !== button) {
+                        // It checks the true answer with other non-selected buttons and finds the true one, and shows the true one
+                        if(trueAnswer == exceptbtn.textContent) {
+                            exceptbtn.classList.add("correct");
+                        }
+                    }
+                });
+            }
+            
+            // Disable all buttons after selection
+            let exceptSelected = document.querySelectorAll("button");
+            
+            exceptSelected.forEach((exceptbtn) => {
+                // It disables all the option button after selection
+                exceptbtn.disabled = true;
+                if(exceptbtn.id == "next-btn"){
+                    // It disables the disabled button action for the next button
+                    exceptbtn.disabled = false
+                }
+            });
+
+            // It shows the next button after selection
             next.style.display = "block";
         });
-        button.disabled=true
     });
 }
 
-next.addEventListener("click", function() {
-    questionCounter++;
 
-    if (questionCounter < questions.length) {
+next.addEventListener("click", function() {
+    counter++;
+    if (counter < questions.length) {
         questionFunction();
         answerFunction();
         next.style.display = "none";
+        next.innerHTML="Next"
+
+        if(counter == question.length-1){
+            next.innerHTML="Result"
+       }
+    }
+    else{
+        question.innerHTML=`You got ${rightAnswer} out of ${questions.length}`
+        answer.innerHTML = "";
+        next.innerHTML="Restart"
+        // It updates the value to the -1 so the question can be repeated from 1. It is not 0 when we click on next button it again counter ++ from above
+        counter=-1
+        return counter;
     }
 });
 
-startQuiz();
 
 
 
