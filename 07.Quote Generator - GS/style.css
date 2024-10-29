@@ -14,9 +14,10 @@ body{
 /* Main box */
 .quote-box{
     background: #fff;
-    width: 700px;
+    width:700px;
+    height: 380px;
     position: absolute;
-    top: 50%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%,-40%);
     padding: 40px;
@@ -113,7 +114,7 @@ body{
     align-items: center;
     gap: 40px;
     height: 100%;
-    transform: translate(25vw,5vh);
+    transform: translate(25vw,1vh);
     position: relative;
     background: wheat;
     width: 50vw;
@@ -156,15 +157,24 @@ input::-webkit-calendar-picker-indicator {
 
 #general_selection{
     cursor: pointer;
-    transform: translate(-8vw,11vh);
+    transform: translate(-8vw,8vh);
 }
 
 #famous_selection{
-    transform: translate(-6vw,11vh);
+    transform: translate(-6vw,8vh);
 }
 
 
 #specific_selection{
-    transform: translate(-4vw,11vh);
+    transform: translate(-4vw,8vh);
+}
+
+/* Style for when the checkbox is checked */
+input[type="checkbox"].g1:checked + label {
+    color: red; /* Change to your preferred color */
+}
+
+label{
+    user-select: none;
 }
 

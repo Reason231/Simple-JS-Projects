@@ -1,148 +1,199 @@
-var api_url="https://api.quotable.io/random"
-const quote=document.querySelector("blockquote")
-const author=document.querySelector("#author")
+var randomApi_url = "https://api.quotable.io/random";
+var authorApi_url;
+var authorPressed = 0;
+const quote = document.querySelector("blockquote");
+const author = document.querySelector("#author");
 
-// for the category functionality
-const generalQuotes=document.querySelector(".general_Quotes")
-const generalSelection=document.querySelector("#general_selection")
-const famousQuotes=document.querySelector(".famous_Quotes")
-const famousSelection=document.querySelector("#famous_selection")
-const specificQuotes=document.querySelector(".specific_Quotes")
-const specificSelection=document.querySelector("#specific_selection")
+// For category functionality
+const generalQuotes = document.querySelector(".general_Quotes");
+const generalSelection = document.querySelector("#general_selection");
+const famousQuotes = document.querySelector(".famous_Quotes");
+const famousSelection = document.querySelector("#famous_selection");
+const specificQuotes = document.querySelector(".specific_Quotes");
+const specificSelection = document.querySelector("#specific_selection");
 
-// for getting the author functioanlity
-const authorInput=document.getElementById("authorInput")
-const authorSearch=document.getElementById("authorsSearch")
+// For getting the author functionality
+const authorInput = document.getElementById("authorInput");
+const authorSearch = document.getElementById("authorsSearch");
 
-// Quote show functionality
-let getQuote=async(url)=>{
-    const response=await fetch(url)
-    var data=await response.json()
-    console.log(data[0])
+// For the filter functionality
+const checkboxes = document.querySelectorAll(".g1, .g2, .g3");
+
+// ---> The end of importing
 
 
-     // Check if the data array is empty or undefined
-     if (!data || data.length === 0) {
-        console.log("No quote found");
-        quote.innerHTML = "No quote found of this author";
-        author.innerHTML = "";
-        return;
-    }
-
-    // Display the quote and author if data exists
-    quote.innerHTML=data[0].content
-    author.innerHTML=data[0].author
-
-    // If the author has no quote
-}
-
+// ---> The start of functionality
 // Twitter functionality
-function tweet(){
-    window.open("https://twitter.com/intent/tweet?text=" + quote.innerHTML,
-        "Tweet Window" , "width=600, height=500"
-    )
+function tweet() {
+  window.open(
+    "https://twitter.com/intent/tweet?text=" + quote.innerHTML,
+    "Tweet Window",
+    "width=600, height=500"
+  );
 }
 
-// Category shown functionality
-generalQuotes.addEventListener("click",()=>{
-    
-    // If other catergoies are visible, then it hide in order to show only general filter
-    if(famousSelection.classList.toggle("active")==true || specificSelection.classList.toggle("active")==true){
-        famousSelection.style.visibility="hidden"
-        specificSelection.style.visibility="hidden"
-        generalSelection.style.visibility="visible"
-    }
-    
-    console.log(generalSelection.classList.toggle("active"))
-})
+// Category (General, Famous , Specific) shown functionality
+generalQuotes.addEventListener("click", () => {
+  famousSelection.classList.remove("active");
+  specificSelection.classList.remove("active");
+  famousSelection.style.visibility = "hidden";
+  specificSelection.style.visibility = "hidden";
+  generalSelection.style.visibility = "visible";
+});
 
-famousQuotes.addEventListener("click",()=>{
-    
-    if(generalSelection.classList.toggle("active")==true || specificSelection.classList.toggle("active")==true){
-        generalSelection.style.visibility="hidden"
-        specificSelection.style.visibility="hidden"
-        famousSelection.style.visibility="visible"
-    }
-})
+famousQuotes.addEventListener("click", () => {
+  generalSelection.classList.remove("active");
+  specificSelection.classList.remove("active");
+  generalSelection.style.visibility = "hidden";
+  specificSelection.style.visibility = "hidden";
+  famousSelection.style.visibility = "visible";
+});
 
-specificQuotes.addEventListener("click",()=>{
-    
-    if(generalSelection.classList.toggle("active")==true || famousSelection.classList.toggle("active")==true){
-        generalSelection.style.visibility="hidden"
-        famousSelection.style.visibility="hidden"
-        specificSelection.style.visibility="visible"
-    }
-    specificSelection.classList.toggle("active")
-})
+specificQuotes.addEventListener("click", () => {
+  generalSelection.classList.remove("active");
+  famousSelection.classList.remove("active");
+  generalSelection.style.visibility = "hidden";
+  famousSelection.style.visibility = "hidden";
+  specificSelection.style.visibility = "visible";
+});
 
-   // Show authors in the input field
-   const showAuthors = (newAuthors) => {
-    try {
-        newAuthors.forEach(authorName => {
-            const option = document.createElement("option");
-            option.value = authorName;
-            option.textContent = authorName; // Set text content for better visibility
-            authorSearch.appendChild(option);
-        });
-    } catch (e) {
-        console.log("Error while showing the author list in the input field", e);
-    }
-
+// Show authors in the input field with the help of tag after 3 sec
+const showAuthors = (authors) => {
+  authors.forEach((authorName) => {
+    const option = document.createElement("option");
+    option.value = authorName;
+    option.textContent = authorName;
+    authorSearch.appendChild(option);
+  });
 };
 
-// Get the author 
+// Fetch authors with delay
 const getAuthors = async () => {
-    let authors = [];
-    let totalPages = 0;
+  let authors = [];
+  let totalPages = 0;
 
-    try {
-        // First fetch to get the total number of pages
-        // Initial Fetch for Total Pages: The code first makes a single fetch call to get the total number of pages.
-        const firstResponse = await fetch(`https://api.quotable.io/authors`);
-        const firstData = await firstResponse.json();
-        totalPages = firstData.totalPages;
+  try {
+    // Initial fetch for first set of authors (e.g., first page)
+    const firstResponse = await fetch(`https://api.quotable.io/authors`);
+    const firstData = await firstResponse.json();
+    totalPages = firstData.totalPages;
+    authors = firstData.results.map((author) => author.name).slice(0, 32);
 
-        // Create an array of fetch promises for each page
-        // Parallel Fetching: It then creates an array of fetch promises for each page and waits for all of them to resolve with Promise.all.
-        const fetchPromises = [];
-        for (let page = 1; page <= totalPages; page++) {
-            fetchPromises.push(fetch(`https://api.quotable.io/authors?page=${page}`));
-        }
+    showAuthors(authors); // Show initial authors
 
-        // Wait for all fetch promises to resolve
-        const responses = await Promise.all(fetchPromises);
-        const authorResults = await Promise.all(responses.map(response => response.json()));
+    // Fetch remaining authors after 5–6 seconds
+    setTimeout(async () => {
+      const fetchPromises = [];
+      for (let page = 2; page <= totalPages; page++) {
+        fetchPromises.push(
+          fetch(`https://api.quotable.io/authors?page=${page}`)
+        );
+      }
 
-        // Flatten the results and show authors
-        // Flatten Results: After all pages are fetched, it flattens the results into the authors array and then calls showAuthors to update the dropdown.
-        authorResults.forEach(result => {
-            authors.push(...result.results.map(author => author.name));
-        });
+      const responses = await Promise.all(fetchPromises);
+      const authorResults = await Promise.all(
+        responses.map((response) => response.json())
+      );
 
-        console.log('All authors:', authors);
-        showAuthors(authors); // Show all authors after fetching
+      authorResults.forEach((result) => {
+        authors.push(...result.results.map((author) => author.name));
+      });
 
-    } catch (e) {
-        console.log("Error while fetching the authors", e);
-    }
+      showAuthors(authors); // Add remaining authors
+      console.log("All authors:", authors);
+    }, 5000); // Delay in milliseconds (5000 ms = 5 seconds)
+  } catch (e) {
+    console.log("Error while fetching the authors", e);
+  }
 };
 
 getAuthors();
 
+// Keydown listener for author input or Entery key pressed in the input feild
+authorInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    authorApi_url = `https://api.quotable.io/quotes/random?author=${authorInput.value}`;
+    getQuote(authorApi_url);
+    authorPressed++;
 
-// It allows you to detect when and which key is being pressed, even before the key is released.
-authorInput.addEventListener("keydown",()=>{
-    // Check if the pressed key is "Enter"
-    if (event.key === "Enter") {
-    // Log the input field's value
+    // Clear input field
+    authorInput.value = "";
+  }
+});
 
-    // It updates the api url
-    api_url=`https://api.quotable.io/quotes/random?author=${authorInput.value}`
-    // It calls the function in order to show the quote
-    getQuote(api_url)
+// Quote show functionality
+let getQuote = async (url) => {
+  if (authorPressed <= 0) {
+    console.log("Fetching random quote:", randomApi_url);
+    const randomResponse = await fetch(randomApi_url);
+    const randomData = await randomResponse.json();
+    console.log(randomData);
 
+    quote.innerHTML = randomData.content;
+    author.innerHTML = randomData.author;
+  } else {
+    const response = await fetch(url);
+    let data = await response.json();
 
-    // Optionally, clear the input field after logging
-    authorInput.value = '';
+    if (!data || data.length === 0) {
+      console.log("No quote found");
+      quote.innerHTML = "No quote found for this author";
+      author.innerHTML = "";
+      authorPressed--;
+      return;
     }
-})
+
+    quote.innerHTML = data[0].content;
+    author.innerHTML = data[0].author;
+  }
+};
+
+// Make getQuote globally accessible
+window.getQuote = getQuote;
+
+
+
+// Filter functionality
+const elementName = [];
+const uniqueArray = []; // Initialize uniqueArray outside the loop
+
+checkboxes.forEach((element) => {
+  element.addEventListener("click", () => {
+    const isInclude = uniqueArray.includes(element.id); // Check if the element is already in the uniqueArray
+
+    if (isInclude) {
+      // If the checkbox is unchecked or double-clicked, remove the element
+      const indexToRemove = uniqueArray.indexOf(element.id);   // Find the index of the tag
+      if (indexToRemove > -1) {
+        uniqueArray.splice(indexToRemove, 1); // Remove the element from uniqueArray with the help of index i.e indexToRemove
+      }
+    } else {
+      // If it is not included, add it
+      uniqueArray.push(element.id);
+    }
+
+    console.log(uniqueArray); // Log the updated uniqueArray
+
+    const arrayLength = uniqueArray.length;
+    let randomTag;
+
+    if (arrayLength === 1) {
+      // Only one tag selected
+      randomTag = uniqueArray[0];
+    } else if (arrayLength > 1) {
+      // Pick one random tag from the unique array
+      const randomIndex = Math.floor(Math.random() * arrayLength);
+      randomTag = uniqueArray[randomIndex];
+    }
+
+    // Construct the API URL with the selected random tag
+    if (randomTag) { // Ensure randomTag is defined before constructing the URL
+      randomApi_url = `https://api.quotable.io/random?tags=${randomTag}`;
+      console.log(randomApi_url);
+    }
+
+    // For demonstration, toggling the general selection class
+    console.log(generalSelection.classList.toggle("active"));
+  });
+});
+

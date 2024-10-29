@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quote Generator</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="./icon.png" type="image/x-icon">
 </head>
 <body>
     <div class="nav">
@@ -29,76 +30,76 @@
     <!-- Selection -->
     <div class="selection" id="general_selection">
         <span>
-            <input type="checkbox" id="Love">
+            <input type="checkbox" id="Love" class="g1">
             <label for="Love">Love</label>
         </span>
 
         <span>
-            <input type="checkbox" id="Friendship">
+            <input type="checkbox" id="Friendship" class="g1">
             <label for="Friendship">Friendship</label>
         </span>
 
             <span>
-            <input type="checkbox" id="Happiness">
+            <input type="checkbox" id="Happiness" class="g1">
             <label for="Happiness">Happiness</label>
         </span>
             <span>
 
-            <input type="checkbox" id="Wisdom">
+            <input type="checkbox" id="Wisdom" class="g1">
             <label for="Wisdom">Wisdom</label>
         </span>
             <span>
 
-            <input type="checkbox" id="Success">
+            <input type="checkbox" id="Success" class="g1">
             <label for="Success">Success</label>
         </span>
             <span>
 
-            <input type="checkbox" id="Failure">
+            <input type="checkbox" id="Failure" class="g1">
             <label for="Failure">Failure</label>
         </span>
         </div>
 
     <div class="selection" id="famous_selection">
         <span>
-            <input type="checkbox" id="History">
+            <input type="checkbox" id="History" class="g2">
             <label for="History">History</label>
         </span>
 
         <span>
-            <input type="checkbox" id="Science">
+            <input type="checkbox" id="Science" class="g2">
             <label for="Science">Science</label>
         </span>
 
             <span>
-            <input type="checkbox" id="Art">
+            <input type="checkbox" id="Art" class="g2">
             <label for="Art">Art</label>
         </span>
             <span>
 
-            <input type="checkbox" id="Motivation">
+            <input type="checkbox" id="Motivation" class="g2">
             <label for="Motivation">Motivation</label>
         </span>
         </div>
 
     <div class="selection" id="specific_selection">
         <span>
-            <input type="checkbox" id="Technology">
+            <input type="checkbox" id="Technology" class="g3">
             <label for="Technology">Technology</label>
         </span>
 
         <span>
-            <input type="checkbox" id="Civil Rights">
+            <input type="checkbox" id="Civil Rights" class="g3">
             <label for="Civil Rights">Civil Rights</label>
         </span>
 
             <span>
-            <input type="checkbox" id="Philosophy">
+            <input type="checkbox" id="Philosophy" class="g3">
             <label for="Philosophy">Philosophy</label>
         </span>
             <span>
 
-            <input type="checkbox" id="Literature">
+            <input type="checkbox" id="Literature" class="g3">
             <label for="Literature">Literature</label>
         </span>
         </div>
@@ -109,7 +110,7 @@
         <blockquote>Love is most Twisted curse of all</blockquote>
         <span id="author">Satarou Gojo</span>
         <div>
-            <button onclick="getQuote(api_url)">New Quote</button>
+            <button onclick="getQuote(authorApi_url)">New Quote</button>
             <button onclick="tweet()"><img src="./twitter.icon.png">Tweet</button>
         </div>
     </div>
