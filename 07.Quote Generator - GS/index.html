@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="nav">
+        <input list="authorsSearch" id="authorInput" placeholder="Search by Author Name">
+        <datalist id="authorsSearch">
+            <!-- The suggestons will come from the js after 3 seconds -->
+        </datalist>
+
+        <!-- Category section -->
+         <div class="general_Quotes">
+            <button id="general_Quotes">General Quotes</button>
+         </div>
+         <div class="famous_Quotes">
+            <button id="famous_Quotes">Famous Quotes</button>
+         </div>
+         <div class="specific_Quotes">
+            <button id="specific_Quotes">Specific Quotes</button>
+         </div>
+    </div>
+
+
+    <!-- Selection -->
+    <div class="selection" id="general_selection">
+        <span>
+            <input type="checkbox" id="Love">
+            <label for="Love">Love</label>
+        </span>
+
+        <span>
+            <input type="checkbox" id="Friendship">
+            <label for="Friendship">Friendship</label>
+        </span>
+
+            <span>
+            <input type="checkbox" id="Happiness">
+            <label for="Happiness">Happiness</label>
+        </span>
+            <span>
+
+            <input type="checkbox" id="Wisdom">
+            <label for="Wisdom">Wisdom</label>
+        </span>
+            <span>
+
+            <input type="checkbox" id="Success">
+            <label for="Success">Success</label>
+        </span>
+            <span>
+
+            <input type="checkbox" id="Failure">
+            <label for="Failure">Failure</label>
+        </span>
+        </div>
+
+    <div class="selection" id="famous_selection">
+        <span>
+            <input type="checkbox" id="History">
+            <label for="History">History</label>
+        </span>
+
+        <span>
+            <input type="checkbox" id="Science">
+            <label for="Science">Science</label>
+        </span>
+
+            <span>
+            <input type="checkbox" id="Art">
+            <label for="Art">Art</label>
+        </span>
+            <span>
+
+            <input type="checkbox" id="Motivation">
+            <label for="Motivation">Motivation</label>
+        </span>
+        </div>
+
+    <div class="selection" id="specific_selection">
+        <span>
+            <input type="checkbox" id="Technology">
+            <label for="Technology">Technology</label>
+        </span>
+
+        <span>
+            <input type="checkbox" id="Civil Rights">
+            <label for="Civil Rights">Civil Rights</label>
+        </span>
+
+            <span>
+            <input type="checkbox" id="Philosophy">
+            <label for="Philosophy">Philosophy</label>
+        </span>
+            <span>
+
+            <input type="checkbox" id="Literature">
+            <label for="Literature">Literature</label>
+        </span>
+        </div>
+
+
+    <div class="quote-box">
+        <h2>Quote of the day</h2>
+        <blockquote>Love is most Twisted curse of all</blockquote>
+        <span id="author">Satarou Gojo</span>
+        <div>
+            <button onclick="getQuote(api_url)">New Quote</button>
+            <button onclick="tweet()"><img src="./twitter.icon.png">Tweet</button>
+        </div>
+    </div>
+
+  
+
+
+    <script src="./index.js"></script>
+</body>
+</html>
