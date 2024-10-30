@@ -1,0 +1,42 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+body{
+    background: #262a2f;
+}
+
+.container{
+    color: black;
+    background-color: white;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 25vw;
+    /* height: 30vh; */
+    transform: translate(35vw,30vh);
+    padding: 1.5rem;
+    border-radius: 14px;
+}
+
+img{
+    /* height: 32vh; */
+    width: 20vw;
+    transform: translateX(1rem);
+    display: none;
+}
+
+input{
+    height: 2.4rem;
+    border-radius: 10px;
+}
+
+#btn{
+    height: 3rem;
+    background-color: rgb(78, 78, 234);
+    border-radius: 10px;
+    color: white;
+}
