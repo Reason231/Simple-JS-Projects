@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="../img/music-player-svgrepo-com.svg" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <!-- Hamburger Menu Panel for Artist List -->
+        <div class="hamburgerpanel">
+            <h3 style="text-align: center; margin-bottom: 10px">List of artists</h3>
+        </div>
+        <!-- Navbar with Hamburger Icon -->
+        <div class="navbar">
+            <img src="../img/hamburger.svg" alt="Menu" id="hamburger">
+        </div>
+
+        <!-- Main Section for Displaying Artist Cover and Song Name -->
+        <div class="main">
+            <span id="artistDesign">
+                <img src="../songs/default/cover.jpg" id="artistCover" alt="Artist Cover">
+            </span>
+            <span id="songName" style="color: black"></span>
+            <span id="artist"></span>
+        <input type="range" value="0" id="progress">
+        </div>
+
+        <!-- Play Section with Audio Player and Controls -->
+        <div class="playSection">
+            <audio id="audioPlayer" src=""></audio>
+            
+              
+                <img src="../img/prevsong.svg" alt="Previous Song" class="control" id="songPrev">
+                <img src="../img/play.svg" alt="Play/Pause" class="control" id="songPlay">
+                <img src="../img/nextsong.svg" alt="Next Song" class="control" id="songNext">
+            </div>
+    </div>
+
+    <!-- Link to the JavaScript file -->
+    <script src="./script.js"></script>
+</body>
+</html>
