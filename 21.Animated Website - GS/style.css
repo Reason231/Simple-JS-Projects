@@ -1,0 +1,72 @@
+body{
+    background: url(./images/background.png);
+    height: 95dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    padding-left: 4rem;
+    color: white;
+    font-family: sans-serif;
+}
+
+#logo{
+    height: 2rem;
+    transform: translateY(-20dvh);
+}
+
+
+h1{
+    font-size: 3rem;
+}
+
+.timer{
+    display: flex;
+    gap: 25px;
+
+}
+
+p:not(#pText){
+    font-size: 2.3rem;
+    font-weight: 600;
+
+}
+
+span:not(#text){
+    font-size: 1.2rem;
+}
+
+button>img{
+    height: 20px;
+}
+
+button{
+    background: transparent;
+    margin-top: 20px;
+    border-color: white;
+    display: flex;
+    align-items: center;
+    color: white;
+    gap: 5px;
+    padding: 10px;
+}
+
+.rocket{
+    width: 250px;
+    position: absolute;
+    right: 10%;
+    bottom: 0;
+    animation: rocket 4s linear infinite;
+}
+
+@keyframes rocket {
+    0%{
+        bottom: 0;
+        opacity: 0;
+    }
+
+    100%{
+        bottom:105% ;
+        opacity: 1;
+    }
+}
