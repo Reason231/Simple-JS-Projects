@@ -17,16 +17,17 @@ body{
     height: 160px;
     position: relative;
 }
-
+/* white outer part */
 .outer{
     height: 160px;
     width: 160px;
     border-radius: 50%;
     padding: 20px;
     box-shadow: 6px 6px 10px 1px rgba(0, 0, 0, 0.15),
-                -6px -6px 10px -1px rgba(255, 255, 155, 0.7);
+    -6px -6px 10px -1px rgba(255, 255, 155, 0.7);
 }
 
+/* white inner part */
 .inner{
     height: 120px;
     width: 120px;
@@ -43,6 +44,31 @@ body{
 
 #number{
     font-weight: 600;
-    color: #555;
-    
+    color: #555;  
+}
+
+/* svg circle */
+circle{
+    fill: none;
+    /* It extracts the color from the id */
+    stroke: url(#GradientColor);
+    stroke-width: 20px;
+    /* It creates half circle if the value is decreased */
+    stroke-dasharray: 472;
+
+    /* Write 0 value to see the svg color */
+    stroke-dashoffset: 472;
+    animation: anim 2s linear forwards;
+}
+
+svg{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+@keyframes anim{
+    100%{
+        stroke-dashoffset: 165;
+    }
 }
